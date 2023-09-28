@@ -59,81 +59,70 @@ cardapio.metodos = {
         $("#btnVerMais").addClass('hidden');
     },
 
-    //Para diminuir a quantidade dos itens do cardápio
+    //Diminuir a quantidade do item do cardápio
     diminuirQuantidade: (id) => {
+        let qntdAtual = parseInt($("#qntd-" + id).text()); //parseInt(); para converter texto em int
 
-        //pegando a quantidade total do item selecionado
-        let qntdAtual = parseInt($("#qntd-" + id).text());
-
-        //Validação para não deixar o item virtar negativo (-1, -2...)
-        if (qntdAtual > 0 ) {
+        if (qntdAtual > 0) {
             $("#qntd-" + id).text(qntdAtual - 1)
         }
-
     },
-    
-    //Para aumentar a quantidade dos itens do cardápio
+
+    //Aumentar a quantidade do item do cardápio
     aumentarQuantidade: (id) => {
-        
-        let qntdAtual = parseInt($("#qntd-" + id).text());
+        let qntdAtual = parseInt($("#qntd-" + id).text()); //parseInt(); para converter texto em int
         $("#qntd-" + id).text(qntdAtual + 1)
-        
-    
+
     },
 
-    //adicionar ao carrinho o item do cardápio
+    //Adicionar ao carrinho o item do cardápio
     adicionarAoCarrinho: (id) => {
 
         let qntdAtual = parseInt($("#qntd-" + id).text());
 
         if (qntdAtual > 0) {
-
-            //obter a categoria ativa 
-            var categoria = $(".container-menu a.active").attr('id').split('menu-')[1];
-
-            //obtem a lista de itens 
+            // obter a categoria ativa
+            var categoria = $(".container-menu a.active").attr('id').split('menu-')[1];      
+            
+            //obtem a lista de itens
             let filtro = MENU[categoria];
 
-             //obtem o item 
-            let item = $.grep(filtro, (e, i) => {return e.id == id});
+            //obtem o item
+            let item = $.grep(filtro, (e, i) => { return e.id == id });
 
             if (item.length > 0) {
 
-                // validar se já existe esse item no carrinho 
+                // Validar se já existe esse item no carrinho 
                 let existe = $.grep(MEU_CARRINHO, (elem, index) => { return elem.id == id});
 
-                // Caso já exista o item no carrinho, só altera a quantidade
+                // Caso já existe, só altera a quantidade 
                 if (existe.length > 0) {
-                    let objIndex = MEU_CARRINHO.findIndex((obj => id == id));
+                    let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
                     MEU_CARRINHO[objIndex].qntd = MEU_CARRINHO[objIndex].qntd + qntdAtual;
+                    alert('Entrou no IF');
                 }
-                // caso ainda não exista o item no carrinho, adiciona ele
-                else { 
+                //Caso ainda não exista o item no carrinho, adiciona ele 
+                else {
                     item[0].qntd = qntdAtual;
-                    //push é para adicionar um valor no array 
                     MEU_CARRINHO.push(item[0])
+                    alert('Não Entrou no IF');
                 }
-
-                alert('Item adicionado ao carrinho')
-                $("#qntd-" + id).text(0)
 
                 
-
+                $("#qntd-" + id).text(0);
+                
             }
-
+    
         }
-
-    }
+    },
 
 }
-
-
 
 cardapio.templates = {
 
     item: `
-        <div class="col-3 mb-5" id="\${id}">
-            <div class="card card-item">
+        <div class="col-3 mb-5">
+            <div class="card card-item" id="\${id}">
                 <div class="img-produto">
                     <img src="\${img}"/>
                 </div>
