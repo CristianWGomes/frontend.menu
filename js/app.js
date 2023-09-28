@@ -116,9 +116,7 @@ cardapio.metodos = {
 
                 alert('Item adicionado ao carrinho')
                 $("#qntd-" + id).text(0)
-
                 
-
             }
 
         }
