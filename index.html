@@ -70,7 +70,7 @@
                                 Aproveite nosso cardápio! Escolha o que desejar e receba em sua casa de forma rápida e segura.
                             </p>
                             <div> <!-- Botão ver cardápio -->
-                                <a class="btn btn-yellow mt-4 mr-3">
+                                <a class="btn">
                                     Ver Cardápio
                                 </a>
                                 <a href="#" class="btn btn-white btn-icon-left mt-4"> <!--Dizendo que o icone é na esquerda btn-icon-left -->
@@ -423,7 +423,7 @@
             <div class="m-body">
                 <div class="container">
                     <!--ItensCarrinho-->
-                    <div id="itensCarrinho" class="row mt-0 ml-0"><!--hidden para ocultar o conteúdo-->
+                    <div id="itensCarrinho" class="row mt-0 ml-0 hidden"><!--hidden para ocultar o conteúdo-->
 
                         <!--item 1-->
                         <div class="col-12 item-carrinho">
@@ -607,16 +607,16 @@
                             <span class="valor-total" id="lblValorTotal"><b>R$ 100,00</b></span>
                         </p>
                     </div>
-                    <a class="btn btn-yellow float-right" id="tbnEtapaPedido">
+                    <a onclick="cardapio.metodos.carregarEtapa(2)" class="btn btn-yellow float-right" id="tbnEtapaPedido">
                         Continuar
                     </a>
-                    <a class="btn btn-yellow float-right hidden" id="tbnEtapaEndereco">
+                    <a onclick="cardapio.metodos.carregarEtapa(3)"  class="btn btn-yellow float-right hidden" id="tbnEtapaEndereco">
                         Revisar pedido
                     </a>
                     <a class="btn btn-yellow float-right hidden" id="tbnEtapaResumo">
                         Enviar pedido
                     </a>
-                    <a class="btn btn-white float-right mr-3 hidden" id="tbnEtapaVoltar">
+                    <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="tbnEtapaVoltar">
                         Voltar
                     </a>
                 </div>
